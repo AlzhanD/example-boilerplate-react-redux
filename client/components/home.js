@@ -1,26 +1,69 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { useEffect, useState } from 'react'
+import { Route, useParams } from 'react-router-dom'
+import axios from 'axios'
 import Head from './head'
+import Main from './main'
+import RepoList from './repoList'
+import RepoView from './nameUser'
+import Header from './header'
+import Footer from './footer'
 
 const Home = () => {
-  const [counter, setCounterNew] = useState(0)
+  const [userRepositories, setUserRepositories] = useState([])
+  const [readMe, setReadMe] = useState('')
+  const { userName, repositoryName } = useParams()
+  const [user, setUser] = useState({})
+  const [commit, setCommit] = useState({})
+  useEffect(() => {
+    axios(`https://api.github.com/users/${userName}/repos`).then(({ data }) =>
+      setUserRepositories(data)
+    )
+  }, [userName])
 
+  useEffect(() => {
+    if (repositoryName !== undefined) {
+      const headers = { Accept: 'application/vnd.github.VERSION.raw' }
+      axios(`https://api.github.com/repos/${userName}/${repositoryName}/readme`, {
+        param: {},
+        headers
+      }).then(({ data }) => {
+        setReadMe(data)
+      })
+    }
+  }, [repositoryName, userName])
+
+  useEffect(() => {
+    axios(`https://api.github.com/users/${userName}`).then(({ data }) => setUser(data))
+  }, [userName])
+  useEffect(() => {
+    axios(`https://api.github.com/users/${userName}`).then(({ data }) => setCommit(data))
+  }, [userName])
   return (
-    <div>
-      <Head title="Hello" />
-      <button type="button" onClick={() => setCounterNew(counter + 1)}>
-        updateCounter
-      </button>
-      <div> Hello World Dashboard {counter} </div>
+    <div className="h-full">
+      <Head />
+      <Header userName={userName} readMe={readMe} user={user} />
+      <div className="container mx-auto">
+        <div>
+          <Route exact path="/" component={() => <Main />} />
+          <Route
+            exact
+            path="/:userName"
+            component={() => (
+              <RepoList userRepositories={userRepositories} userName={userName} commit={commit} />
+            )}
+          />
+          <Route
+            exact
+            path="/:userName/:repositoryName"
+            component={() => <RepoView readMe={readMe} />}
+          />
+        </div>
+      </div>
+      <Footer />
     </div>
   )
 }
 
 Home.propTypes = {}
 
-const mapStateToProps = () => ({})
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home

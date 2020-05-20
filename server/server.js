@@ -10,7 +10,7 @@ import cookieParser from 'cookie-parser'
 
 import Html from '../client/html'
 
-const { writeFile, readFile, unlink} = require('fs').promises
+const { writeFile, readFile, unlink } = require('fs').promises
 
 let connections = []
 

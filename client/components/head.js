@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 
 const Head = (props) => (
   <Helmet>
-    <title>IgorSamartsev Boilerplate - {props.title}</title>
+    <title>Alzhan.Nurumbetov Boilerplate - {props.title}</title>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#FF0000" />
@@ -16,7 +16,7 @@ Head.propTypes = {
 }
 
 Head.defaultProps = {
-  title: 'igorsamartsev.ru'
+  title: 'AlzhanNurumbetov.USA'
 }
 
 export default Head

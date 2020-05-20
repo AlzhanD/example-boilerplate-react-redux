@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+
+import { Link } from 'react-router-dom'
 import Head from './head'
 
 const Dummy = () => {
@@ -9,7 +9,11 @@ const Dummy = () => {
       <Head title="Hello" />
       <div className="flex items-center justify-center h-screen">
         <div className="bg-indigo-800 text-white font-bold rounded-lg border shadow-lg p-10">
-          This is dummy component
+          <div className="transition ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110 ...">
+            <Link to="/dashboard">
+              <p className="font-sans text-lg text-red-400 text-center">Go To Dashboard</p>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -18,8 +22,4 @@ const Dummy = () => {
 
 Dummy.propTypes = {}
 
-const mapStateToProps = () => ({})
-
-const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dummy)
+export default Dummy
