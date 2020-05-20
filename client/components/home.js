@@ -39,10 +39,10 @@ const Home = () => {
     axios(`https://api.github.com/users/${userName}`).then(({ data }) => setCommit(data))
   }, [userName])
   return (
-    <div className="h-full">
+    <div>
       <Head />
       <Header userName={userName} readMe={readMe} user={user} />
-      <div className="container mx-auto">
+      <div className="container page-wrap mx-auto pt-20">
         <div>
           <Route exact path="/" component={() => <Main />} />
           <Route

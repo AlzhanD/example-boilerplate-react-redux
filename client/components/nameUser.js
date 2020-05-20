@@ -4,7 +4,7 @@ import './readme.scss'
 
 const RepoView = (props) => {
   return (
-    <div className="markdown-body">
+    <div className="markdown-body relative">
       <Markdown>{props.readMe}</Markdown>
     </div>
   )
