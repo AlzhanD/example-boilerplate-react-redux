@@ -16,9 +16,6 @@ const RepoList = (props) => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <div className="absolute">
-        <Loader type="Puff" color="#00BFFF" height={70} width={70} timeout={500} />
-      </div>
       <table className="min-w-full">
         <thead>
           <tr>
@@ -57,6 +54,11 @@ const RepoList = (props) => {
           ))}
         </tbody>
       </table>
+      {!props.userRepositories.length && (
+        <div className="flex items-center justify-center mt-20">
+          <Loader type="Puff" color="#00BFFF" height={70} width={70} timeout={3000} />
+        </div>
+      )}
     </div>
   )
 }
