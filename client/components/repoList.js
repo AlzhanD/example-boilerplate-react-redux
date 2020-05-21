@@ -49,7 +49,9 @@ const RepoList = (props) => {
               <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <Link to={`/${props.userName}/${el.name}`}>View readme</Link>
               </td>
-              <td>{new Date(el.updated_at).toLocaleString()}</td>
+              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                {new Date(el.updated_at).toLocaleString()}
+              </td>
             </tr>
           ))}
         </tbody>

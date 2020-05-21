@@ -11,22 +11,26 @@ const Header = (props) => {
       <div id="menu" className="flex space-x-4">
         <div>
           {props.userName && (
-            <button
-              type="button"
-              className="bg-transparent mx-2 hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            >
-              <Link to="/">Main</Link>
-            </button>
+            <Link to="/">
+              <button
+                type="button"
+                className="bg-transparent mx-2 hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              >
+                Main
+              </button>
+            </Link>
           )}
         </div>
         <div>
           {props.readMe && (
-            <button
-              type="button"
-              className="bg-transparent mx-2 hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            >
-              <Link to={`/${props.userName}`}>Repositories</Link>
-            </button>
+            <Link to={`/${props.userName}`}>
+              <button
+                type="button"
+                className="bg-transparent mx-2 hover:bg-blue-500 text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              >
+                Repositories
+              </button>
+            </Link>
           )}
         </div>
       </div>
